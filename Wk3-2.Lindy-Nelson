@@ -1,0 +1,34 @@
+import datetime
+
+def print_timestamp(username):
+    "Print timestamp with username."
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{timestamp}] {username}")
+
+def calculate_alarm_time():
+    "Calculates the military time when the alarm will go off."
+    try:
+        # Ask the user for the current time in hours (military time)
+        current_time = int(input("Enter the current time in military time (0-23): "))
+        if current_time < 0 or current_time > 23:
+            raise ValueError("Value must be between 0 and 23.")
+
+        # Request the number of hours to wait
+        wait_hours = int(input("In how many hours should the alarm go off: "))
+        if wait_hours < 0:
+            raise ValueError("Value must be a positive number.")
+        
+        # Calculate alarm time
+        alarm_time = (current_time + wait_hours) % 24
+
+        # Output result
+        print(f"The alarm will go off at {alarm_time:02d} (military time).")
+    
+    except ValueError as e:
+        print(f"Invalid input: {e}")
+
+# Run program
+if __name__ == "__main__":
+    print_timestamp("Lindy")  # Print starting timestamp
+    calculate_alarm_time()
+    print_timestamp("Lindy")  # Print ending timestamp

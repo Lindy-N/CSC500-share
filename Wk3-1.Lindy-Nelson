@@ -1,0 +1,40 @@
+import datetime
+
+def print_timestamp(username):
+    "Print timestamp with username."
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{timestamp}] {username}")
+
+def calculate_total():
+    "Calculate the total cost of meal, with tax and tip."
+    # Print starting timestamp
+    print_timestamp("Lindy")
+
+    # Request input for cost of the meal
+    try:
+        meal_charge = float(input("Enter the cost of the meal: $"))
+        if meal_charge < 0:
+            raise ValueError("Value must be a positive number.")
+    except ValueError as e:
+        print(f"Invalid input: {e}")
+        return
+
+    # Calculate amounts
+    tip = meal_charge * 0.18  # 18% tip
+    tax = meal_charge * 0.07  # 7% tax
+    total = meal_charge + tip + tax
+
+    # Display amounts
+    print("\n--- Begin Receipt ---")
+    print(f"Subtotal: ${meal_charge:.2f}")
+    print(f"Tip (18%): ${tip:.2f}")
+    print(f"Tax (7%): ${tax:.2f}")
+    print(f"Total: ${total:.2f}")
+    print("--- End Receipt ---\n")
+
+    # Print ending timestamp
+    print_timestamp("Lindy")
+
+# Run the program
+if __name__ == "__main__":
+    calculate_total()

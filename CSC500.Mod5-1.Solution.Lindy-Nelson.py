@@ -1,6 +1,6 @@
 import datetime
 
-# alculate rainfall over a period of years
+# Calculate rainfall over a period of years
 def rainfall_calculator():
     # Get the current timestamp
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")

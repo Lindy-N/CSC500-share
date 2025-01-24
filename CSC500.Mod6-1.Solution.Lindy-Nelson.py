@@ -17,7 +17,7 @@ cheeses[1] = "mozzarella"
 removed_cheese = cheeses.pop(2)
 
 # Print the final list and the removed item
-print("Final list of cheeses:", cheeses)
+print("\nFinal list of cheeses:", cheeses)
 print("Removed cheese:", removed_cheese)
 
 print(f"User: {username}")

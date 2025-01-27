@@ -1,3 +1,5 @@
+import datetime
+
 class ItemToPurchase:
     def __init__(self, name="", description="", price=0.0, quantity=0):
         self.name = name
@@ -10,9 +12,11 @@ class ShoppingCart:
         self.customer_name = customer_name
         self.current_date = current_date
         self.cart_items = []
+        self.username = "Lindy"
 
     def add_item(self, item):
         self.cart_items.append(item)
+        self.print_timestamp()
 
     def remove_item(self, item_name):
         item_found = False
@@ -20,6 +24,7 @@ class ShoppingCart:
             if item.name == item_name:
                 self.cart_items.remove(item)
                 item_found = True
+                self.print_timestamp()
                 break
         if not item_found:
             print("Item not found in cart. Nothing removed.")
@@ -35,6 +40,7 @@ class ShoppingCart:
                 if item_to_modify.quantity != 0:
                     item.quantity = item_to_modify.quantity
                 item_found = True
+                self.print_timestamp()
                 break
         if not item_found:
             print("Item not found in cart. Nothing modified.")
@@ -48,7 +54,7 @@ class ShoppingCart:
         return total_cost
 
     def print_total(self):
-        print(f"{self.customer_name}'s Shopping Cart")
+        print(f"{self.customer_name}'s Shopping Cart (Managed by {self.username})")
         print(self.current_date)
         num_items = self.get_num_items_in_cart()
         print(f"Number of Items: {num_items}")
@@ -62,10 +68,14 @@ class ShoppingCart:
             print(f"Total: ${total_cost:.2f}")
 
     def print_descriptions(self):
-        print(f"{self.customer_name}'s Shopping Cart Descriptions")
+        print(f"{self.customer_name}'s Shopping Cart Descriptions (Managed by {self.username})")
         print(self.current_date)
         for item in self.cart_items:
             print(f"{item.name}: {item.description}")
+
+    def print_timestamp(self):
+        current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(f"Action performed by {self.username} on {current_time}")
 
 def print_menu(cart):
     options = {
@@ -111,5 +121,5 @@ def print_menu(cart):
             print("Invalid option. Please try again.")
 
 if __name__ == "__main__":
-    cart = ShoppingCart("Jane Doe", "January 26, 2025")
+    cart = ShoppingCart("John Doe", "January 26, 2025")
     print_menu(cart)
